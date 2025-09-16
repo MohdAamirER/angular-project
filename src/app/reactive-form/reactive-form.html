@@ -1,0 +1,33 @@
+<div [hidden]="submitted">
+<div class="container">
+<h2 style="color: blueviolet;">Welcome to Reactive Forms</h2>
+<form (ngSubmit)="formSubmit()" [formGroup]="profileFormGroup">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <div *ngIf="firstName?.errors?.['required'] && firstName?.touched" class="alert alert-danger">First Name is required</div>
+            <div *ngIf="firstName?.errors?.['minlength']" class="alert alert-danger">First name should be atleast 5 character</div>
+            <div *ngIf="firstName?.errors?.['pattern']" class="alert alert-danger">First Name only contains alphabats </div>
+            <div *ngIf="firstName?.errors?.['isAbusive']" class="alert alert-danger">Abusive word like <b><i>{{firstName?.errors?.['abusiveWord']}}</i></b> not allowed</div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+    </div>
+    <div class="form-group" formGroupName="address">Address
+        <div class="form-group">
+            <label for="addressLine1">address Line1</label>
+            <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1">
+            <div *ngIf="addressLine1?.errors?.['required'] && addressLine1?.touched" class="alert alert-danger">Address Line1 is Required</div>
+        </div>
+        <div class="form-group">
+            <label for="addressLine2">address Line2</label>
+            <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2">
+            <div *ngIf="addressLine2?.errors?.['required'] && addressLine2?.touched" class="alert alert-danger">Address Line2 is Required</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!profileFormGroup.valid">Submit</button>
+</form>
+
+</div>
+</div>
