@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AsyncValidatorFn, FormControl,FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
+import { AsyncValidatorFn, UntypedFormControl,UntypedFormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
 import { checkAbusiveWords } from '../validators/abusive-words.validator';
 
 
@@ -17,12 +17,12 @@ export class MahaveerTourAgencyComponent implements OnInit {
   ngOnInit(): void {
   }
   
-profileFormGroup = new FormGroup({
-  firstName : new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(15),Validators.pattern('^[a-zA-Z ]*$'),checkAbusiveWords]),
-  lastName : new FormControl(''),
-  address: new FormGroup({
-    addressLine1: new FormControl('',[Validators.required]),
-    addressLine2: new FormControl('',Validators.required),
+profileFormGroup = new UntypedFormGroup({
+  firstName : new UntypedFormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(15),Validators.pattern('^[a-zA-Z ]*$'),checkAbusiveWords]),
+  lastName : new UntypedFormControl(''),
+  address: new UntypedFormGroup({
+    addressLine1: new UntypedFormControl('',[Validators.required]),
+    addressLine2: new UntypedFormControl('',Validators.required),
   })
 });
 
